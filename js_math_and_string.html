@@ -1,0 +1,51 @@
+<html>
+<body>
+
+<h1>JavaScript Math</h1>
+<h2></h2>
+<p></p>
+
+<p id="demo"></p>
+
+<script>
+let a = Math.floor(0.60);
+let b = Math.ceil(0.40);
+let c = Math.min(5, 4);
+let d = Math.max(5,1);
+let e = Math.round(-5.1);
+let f = Math.trunc(8.9);
+let g= Math.sqrt(64);
+let h=Math.pow(3,3);
+let i=Math.abs(-4.7);
+let j=Math.sin(90 * Math.PI / 180);
+let k=Math.cos(90 * Math.PI / 180)
+let l=Math.random()
+let m=Math.log(1)
+
+let txt ="Hello World, The World is very Big.";
+let txt1="It is Grand."
+let txt2="     It is Grand        "
+let len= txt.length;
+let substring=txt.substring(2);
+let substr=txt.substr(2,6);
+let rep=txt.replace("World","Universe");
+let repall=txt.replaceAll("World","Kingdom");
+let upper=txt.toUpperCase();
+let lower=txt.toLowerCase();
+let slice=txt.slice(0,5);
+let concat=txt.concat(" ",txt1);
+let trm=txt2.trim();
+let charat=txt.charAt(0);
+
+
+
+
+document.getElementById("demo").innerHTML =
+a + "<br>" + b + "<br>" + c + "<br>" + d + "<br>" + e + "<br>" + f +"<br>" + g + "<br>" + h + "<br>" + i+"<br>" +
+ j+"<br>" + k+ "<br>" + l+"<br>" + m+"<br>"+len+"<br>"+substring+"<br>"+substr+"<br>"+rep+"<br>"+repall+
+"<br>"+upper+"<br>"+lower+"<br>"+slice+"<br>"+concat+"<br>"+trm+"<br>"+charat;
+
+</script>
+
+</body>
+</html>
