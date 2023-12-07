@@ -1,0 +1,62 @@
+<html>
+<head>
+<script type="text/javascript">
+var c=0;
+var score=0;
+function funct()
+{
+if(document.getElementById('javascript').checked)
+{
+score++;
+
+}
+if(document.getElementById('russia').checked)
+{
+score++;
+
+}
+if(document.getElementById('shanghai').checked)
+{
+score++;
+}
+if(document.getElementById('corona virus').checked)
+{
+score++;
+}
+document.write(score);
+
+}
+</script>
+<link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<form name="quiz">
+<h1 align="center">QUIZ</h1>
+<div>
+<p>1.what is the best programming language to learn in 2023?</p>
+<p><input type="radio"id="html"name="question1"value="A.html">A.html</p>
+<p><input type="radio"id="python"name="question1"value="B.html">B.python</p>
+<p><input type="radio"id="javascript"name="question1"value="C.html">C.Javascript</p>
+</div>
+<div>
+<p>2.What is the biggest country in the world?</p>
+<p><input type="radio"id="russia"name="question2"value="A.country">A.Russia</p>
+<p><input type="radio"id="america"name="question2"value="B.country">B.America</p>
+<p><input type="radio"id="china"name="question2"value="C.country">C.China</p>
+</div>
+<div>
+<p>3.What is the capital of china?</p>
+<p><input type="radio"id="Guanzhou"name="question3"value="A.capital">A.guanzhou</p>
+<p><input type="radio"id="Nanjini"name="question3"value="B.capital">B.Nanjini</p>
+<p><input type="radio"id="shanghai"name="question3"value="C.capital">C.Shanghai</p>
+</div>
+<div>
+<p>4.What is the biggest problem facing today?</p>
+<p><input type="radio"id="Financial problems"name="question4"value="A.problem">A.Financial problems</p>
+<p><input type="radio"id="corona virus"name="question4"value="B.problem">B.Corona virus</p>
+<p><input type="radio"id="Economic problems"name="question4"value="C.problem">C.Economic problems</p>
+</div>
+<button onclick="funct()"align="center">SUBMIT</button>
+</form>
+</body>
+</html>
