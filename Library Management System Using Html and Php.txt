@@ -1,0 +1,541 @@
+<html>
+<head>
+<title>Library</title>
+<style>
+body
+{
+background-image:url('l.jpg');
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+}
+h1
+{
+color:White;
+text-align:center;
+background-color:Chocolate;
+}
+form
+{
+padding-left:25%;
+}
+label
+{
+background-color:FloralWhite;
+}
+</style>
+</head>
+<body>
+<?php
+if(isset($_POST['sub']))
+{
+$username=$_POST['txt1'];
+$password=$_POST['pd'];
+if($username==
+"Admin" AND $password==
+"pwd")
+{
+header('Location:homepage.html');
+}
+else
+{
+header('Location:fail.html');
+}
+}
+?>
+<center>
+<h1><b><big>Library Management System</big></b></h1>
+<form method=
+"POST">
+<label for=
+"un"><b>Username:</b></label>
+<input type=
+"text" name=
+"txt1" id=
+"un"><br><br>
+<label for=
+"pwd"><b>Password:</b></label>
+<input type=
+"password" name=
+"pd" id=
+"pwd"><br><br>
+<input type=
+"submit" name=
+"sub" id=
+"sub" value=
+"Log in">
+</form>
+</center>
+</body>
+</html>
+homepage.html
+<html>
+<head>
+<title>Home Page</title>
+<style>
+body
+{
+background-image:url('libb3.jpg');
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+}
+b
+{
+color:white;
+}
+form
+{
+padding-left:15%;
+}
+h1
+{
+color:White;
+text-align:center;
+background-color:Chocolate;
+}
+</style>
+</head>
+<body>
+<h1>Welcome to your Homepage</h1>
+<form method=
+"POST" action=
+"homepage.html">
+<h2><b><i>To view all details:</i></b>
+<button type=
+"submit" id=
+"view" name=
+"view" formaction=
+"viewall.php">View
+All</button>&nbsp;&nbsp;</h2>
+<h2><b><i>To search details of particular data:</i></b>
+<button type=
+"submit" id=
+"search" name=
+"search"
+formaction=
+"search.php">Search</button>&nbsp;&nbsp;</h2>
+<h2><b><i>To insert details:</i></b>
+<button type=
+"submit" id=
+"insert" name=
+"insert"
+formaction=
+"http://localhost/seetha/book_insert.php">Insert</button></h2>
+<h2><b><i>To Edit details:</i></b>
+<button type=
+"submit" id=
+"update" name=
+"update"
+formaction=
+"update.php">Update</button>&nbsp;&nbsp;</h2>
+</form>
+</body>
+</html>
+book_insert.php
+<html>
+<head>
+<title>Book Details</title>
+<style>
+form
+{
+background-color:Coral;
+}
+body
+{
+background-image:url('library2.jpg');
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+}
+* {
+box-sizing: border-box;
+}
+</style>
+</head>
+<body>
+<?php
+require('connect.php');
+if(isset($_POST['sub']))
+{
+$name=$_POST['Book_name'];
+$author=$_POST['Author'];
+$publisher=$_POST['Publisher'];
+$quantity=$_POST['Quantity'];
+$prize=$_POST['Prize'];
+$sql=
+"insert into
+library(Book_name,Author,Publisher,Quantity,prize)values('$name'
+,
+'$author'
+,
+'$publisher'
+,
+'$quantity'
+,
+'$prize
+')";
+$result=mysqli_query($conn,$sql);
+if($result)
+{
+header('Location: successpage.html');
+}
+mysqli_close($conn);
+}
+else
+{
+?>
+<form align=
+"center" method=
+"POST" >
+<fieldset>
+<h1><u>Book Details</u></h1>
+<label for=
+"book_name">Book_name:</label>
+<input type=
+"text" name=
+"Book_name" id=
+"book_name"><br><br>
+<label for=
+"author">Author:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+<input type=
+"text" name=
+"Author" id=
+"author"><br><br>
+<label for=
+"pb">Publisher:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+<input type=
+"text" name=
+"Publisher" id=
+"pb" ><br><br>
+<label for=
+"qn">Quantity:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+<input type=
+"text" name=
+"Quantity" id=
+"qn" ><br><br>
+<label
+for=
+"prize">Prize:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+<input type=
+"text" name=
+"Prize" id=
+"prize"><br><br>
+<input type=
+"submit" name=
+"sub" id=
+"sub" value=
+"Submit">&nbsp;&nbsp;
+<input type=
+"reset" name=
+"rst" id=
+"rst" value=
+"Reset">
+</fieldset>
+<?php
+}
+?>
+</form>
+</body>
+</html>
+successpage.html
+<html>
+<head>
+<title>Success</title>
+<style>
+body{
+background-color:Aquamarine;
+}
+</style>
+</head>
+<body>
+<center>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<h1><big>"Successfully Done"</big></h1>
+</center>
+</body>
+</html>
+viewall.php
+<html>
+<head>
+<title>View All</title>
+<style>
+body
+{
+background-image:url('library2.jpg');
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+color:Red;
+}
+</style>
+</head>
+<body>
+<big><b>
+<?php
+require('connect.php');
+$sql=
+"select * from library";
+$result=mysqli_query($conn,$sql);
+if(mysqli_num_rows($result)>0)
+{
+while($row=mysqli_fetch_assoc($result))
+{
+echo "Book Name:".$row['Book_name']."<br>";
+echo "Author:".$row['Author']."<br>";
+echo "Publisher:".$row['Publisher']."<br>";
+echo "Quantity:".$row['Quantity']."<br>";
+echo "Prize:".$row['Prize']."<br><br>";
+}
+}
+else
+{
+echo "No Results";
+}
+mysqli_close($conn);
+?>
+</big></b>
+</body>
+</html>
+search.php
+<html>
+<head>
+<title>Search</title>
+<style>
+body
+{
+background-image:url('library2.jpg');
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+color:Red;
+}
+</style>
+</head>
+<body>
+<big><b>
+<?php
+require('connect.php');
+if(isset($_POST['sub']))
+{
+$id=$_POST['txt1'];
+$sql=
+"select * from library where Id=$id";
+$result=mysqli_query($conn,$sql);
+if(mysqli_num_rows($result)>0)
+{
+while($row=mysqli_fetch_assoc($result))
+{
+echo "Book Name:".$row['Book_name']."<br>";
+echo "Author:".$row['Author']."<br>";
+echo "Publisher:".$row['Publisher']."<br>";
+echo "Quantity:".$row['Quantity']."<br>";
+echo "Prize:".$row['Prize']."<br><br>";
+}
+}
+mysqli_close($conn);
+}
+else
+{
+?>
+</big></b>
+<form method=
+"POST" align=
+"center">
+<h2>Enter the Id of the book for Details:
+<input type=
+"text" name=
+"txt1" ></h2><br>
+<input type=
+"submit" name=
+"sub" value=
+"Submit">
+<?php
+}
+?>
+</form>
+</body>
+</html>
+update.php
+<html>
+<head>
+<title>Upadte</title>
+<style>
+body
+{
+background-image:url('library2.jpg');
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+color:PaleGreen;
+}
+</style>
+</head>
+<body>
+<form method=
+"POST" align=
+"center" action=
+"update1.php">
+<h2>Enter the Id of the book for Details:
+<input type=
+"text" name=
+"txt1" ></h2><br>
+<input type=
+"submit" name=
+"sub" value=
+"Submit">
+</form>
+</body>
+</html>
+update1.php
+<html>
+<head>
+<style>
+body
+{
+background-image:url('library2.jpg');
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+}
+</style>
+</head>
+<body>
+<big><b>
+<form method=
+"post"action=
+"update2.php">
+<?php
+require('connect.php');
+if(isset($_POST['sub']))
+{
+$id=$_POST['txt1'];
+$sql=
+"select * from library where Id=$id";
+$result=mysqli_query($conn,$sql);
+if(mysqli_num_rows($result)>0)
+{
+while($row=mysqli_fetch_assoc($result))
+{
+echo
+"ID:"."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&
+nbsp;&nbsp;&nbsp;<input type=
+'text' name=
+'id' value=
+".$row['Id']."><br>";
+echo "Book Name:"."&nbsp;<input type=
+'text' name=
+'bn'
+value=
+".$row['Book_name']."><br>";
+echo "Author:"."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=
+'text'
+name=
+'at' value=
+".$row['Author']."><br>";
+echo "Publisher:"."&nbsp;&nbsp;&nbsp;&nbsp;<input type=
+'text' name=
+'pub'
+value=
+".$row['Publisher']."><br>";
+echo "Quantity:"."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=
+'text' name=
+'qn' value=
+".
+$row['Quantity']."><br>";
+echo
+"Prize:"."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type=
+'text'
+name=
+'pz' value=
+".$row['Prize']."><br><br>";
+}
+}
+mysqli_close($conn);
+}
+?>
+<input type=
+"submit" name=
+"sub1" value=
+"Update">
+</form>
+</big></b>
+</body>
+</html>
+update2.php
+<html>
+<head>
+<title>Upadte</title>
+<style>
+body
+{
+background-image:url('library2.jpg');
+background-repeat:no-repeat;
+background-position:center;
+background-size:cover;
+color:PaleGreen;
+}
+</style>
+</head>
+<body>
+<form method=
+"post"action=
+"update2.php">
+<?php
+require('connect.php');
+if(isset($_POST['sub1']))
+{
+$id1=$_POST['id'];
+$bname=$_POST['bn'];
+$author=$_POST['at'];
+$publisher=$_POST['pub'];
+$quantity=$_POST['qn'];
+$price=$_POST['pz'];
+$sql =
+"UPDATE library SET
+Book_name=
+'$bname'
+,Author=
+'$author'
+,Publisher=
+'$publisher'
+,Quantity=
+'$quantity'
+,Prize=
+'$price' WHERE
+Id=
+'$id1'";
+$result=mysqli_query($conn, $sql);
+if ($result)
+{
+header('Location: successpage.html');
+}
+else
+{
+header('Location: fail.html');
+}
+mysqli_close($conn);
+}
+?>
+</form>
+</body>
+</html>
+fail.html
+<html>
+<head>
+<title>Fail</title>
+<style>
+body{
+background-color:LightPink;
+}
+</style>
+</head>
+<body>
+<CENTER>
+<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br>
+<h1><big>"Failed"</big></h1>
+</center>
+</body>
+</html
